@@ -1,17 +1,14 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-// const { PrismaClient } = require('@prisma/client');
-const cors = require('cors');
+const { PrismaClient } = require('@prisma/client');
+
 
 const app = express();
 const port = process.env.PORT || 3000; // Modificado para soportar la asignación de puerto por Vercel
-// const prisma = new PrismaClient();
+const prisma = new PrismaClient();
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-
-// Habilitar CORS
-app.use(cors());
 
 // Manejador de ruta POST para la ruta raíz
 app.post('/', async (req, res) => {
@@ -45,4 +42,3 @@ app.get('/', (req, res) => {
 app.listen(port, () => {
   console.log(`Servidor Express en ejecución en http://localhost:${port}`);
 });
-
